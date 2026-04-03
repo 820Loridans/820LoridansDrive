@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -267,3 +268,84 @@
 
         const a = triggers[currentIndex];
         const href = a.getAttribute('href');
+        const cap = a.getAttribute('data-caption') || a.querySelector('img')?.alt || '';
+
+        lastFocused = document.activeElement;
+
+        img.src = href;
+        img.alt = cap;
+        caption.textContent = cap;
+
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+
+        document.body.style.overflow = 'hidden';
+        btnClose.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        img.src = '';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function showNext() {
+        openLightbox((currentIndex + 1) % triggers.length);
+      }
+
+      function showPrev() {
+        openLightbox((currentIndex - 1 + triggers.length) % triggers.length);
+      }
+
+      // Thumbnail click handlers
+      triggers.forEach((a, i) => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLightbox(i);
+        });
+      });
+
+      // Close handlers
+      btnClose.addEventListener('click', closeLightbox);
+
+      // Click outside image closes
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Prev/Next buttons
+      btnNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+      btnPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+
+      // Keyboard support
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      });
+
+      // Basic swipe support (mobile)
+      let touchStartX = null;
+      lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      lightbox.addEventListener('touchend', (e) => {
+        if (touchStartX === null) return;
+        const touchEndX = e.changedTouches[0].screenX;
+        const dx = touchEndX - touchStartX;
+
+        if (Math.abs(dx) > 40) {
+          if (dx < 0) showNext();
+          else showPrev();
+        }
+        touchStartX = null;
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
+
