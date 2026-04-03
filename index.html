@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>820 Loridans Drive</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    .container { max-width: 1100px; margin: auto; }
+    h1 { letter-spacing: 0.5px; }
+    .note { color:#555; margin-bottom:20px; }
+    .vimeo { margin: 30px 0; }
+.description {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #444;
+  margin: 18px 0 28px;
+  max-width: 1000px;
+}
+footer { margin-top:40px; color:#777; font-size:14px; }
+
+    /* ✅ 4-across thumbnail grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;               /* space between tiles */
+      margin-top: 10px;
+    }
+
+    .gallery figure {
+      margin: 0;               /* remove default figure margin */
+    }
+
+    .gallery a {
+      display: block;
+      border-radius: 10px;
+      overflow: hidden;        /* keeps rounded corners on image */
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+      background: #f6f6f6;
+      transition: transform 0.12s ease;
+    }
+
+    .gallery a:hover {
+      transform: translateY(-2px);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 170px;           /* consistent thumbnail height */
+      object-fit: cover;       /* crops nicely instead of stretching */
+      display: block;
+    }
+
+    .gallery figcaption {
+      font-size: 13px;
+      color: #444;
+      margin-top: 6px;
+      line-height: 1.25;
+    }
+
+    /* ✅ Responsive: 2 across on tablets, 1 across on phones */
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery img { height: 180px; }
+    }
+
+    @media (max-width: 520px) {
+      .gallery { grid-template-columns: 1fr; }
+      .gallery img { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>820 Loridans Drive</h1>
+
+<p class="description">
+6 bedroom | 8 bathroom | $4,295,000<br><br>
+
+A rare opportunity to own an architectural statement of luxury and privacy in one of Atlanta’s most coveted residential neighborhoods. Set on 1.2 private acres, this exceptional estate delivers over 8,500 square feet of impeccably finished living space across three stunning levels, all accessible by a private elevator and two separate staircases.<br><br>
+
+Every detail reflects award‑winning interiors—from soaring ceilings and bespoke millwork, including 3 showpiece Isokern fireplaces, to an effortless flow designed for both grand entertaining and intimate living. At the heart of the home, the spectacular chef’s kitchen is a showpiece crafted for serious culinary pursuits and unforgettable gatherings. The spacious primary suite offers a true retreat with a spa‑inspired bath featuring a steam shower, a massive custom dressing room with an eight‑foot center island, and its own private laundry.<br><br>
+
+Five additional en suite bedrooms, thoughtfully distributed across all three levels, provide exceptional privacy and comfort for family and guests alike. Enhancing everyday livability and entertaining are a main‑level laundry room, two powder rooms, temperature‑controlled wine cellar, fully appointed professional‑level bar, fully equipped gym, and billiards lounge—along with a host of curated spaces designed for effortless luxury living.<br><br>
+
+Step out to your private backyard outdoor sanctuary, complete with heated pool and spa, built‑in fire pit, and serene wooded views that create seamless indoor‑outdoor living. A circular drive enhances curb appeal and arrival experience, while flexible spaces throughout the home support work, relaxation, and entertaining. All custom furnishings and artwork may be purchased separately, allowing for a turnkey luxury experience.<br><br>
+
+This is not just a home—it’s a lifestyle defined by elegance, privacy, and impeccable design.
+</p>
+
+    <p class="note">Shared confidentially with qualified representatives.</p>
+
+<h2>Video Tour</h2>    
+<div class="vimeo">
+  <iframe
+    src="https://player.vimeo.com/video/226053498"
+    width="100%"
+    height="520"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+
+    <h2>Photo Gallery</h2>
+
+<div class="gallery">
+  <figure>
+    <a href="photos_web/Background-for-Kaitlin-shower.jpg"
+       class="lightbox-trigger"
+       data-caption="Primary bath – steam shower">
+      <img src="photos_web/Background-for-Kaitlin-shower.jpg"
+           alt="Primary bath – steam shower"
+           loading="lazy">
+    </a>
+    <figcaption>Primary bath – steam shower</figcaption>
+  </figure>
+
+  <figure>
+    <a href="photos_web/kitchen.jpg"
+       class="lightbox-trigger"
+       data-caption="Kitchen">
+      <img src="photos_web/kitchen.jpg"
+           alt="Kitchen"
+           loading="lazy">
+    </a>
+    <figcaption>Kitchen</figcaption>
+  </figure>
+</div>
+
+</body>
+</html>
