@@ -1,158 +1,269 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>820 Loridans Drive</title>
-  
-<style>
-  body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
-  .container { max-width: 1100px; margin: auto; }
-  h1 { letter-spacing: 0.5px; }
-  .note { color:#555; margin-bottom:20px; }
 
-  .description {
-    font-size: 15.5px;
-    line-height: 1.6;
-    color: #444;
-    margin: 18px 0 28px;
-    max-width: 1000px;
-  }
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    .container { max-width: 1100px; margin: auto; }
+    h1 { letter-spacing: 0.5px; }
+    .note { color:#555; margin-bottom:20px; }
 
-  footer { margin-top:40px; color:#777; font-size:14px; }
+    .description {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #444;
+      margin: 18px 0 28px;
+      max-width: 1000px;
+    }
 
-  /* ✅ Video section: tighter spacing + better mobile layout */
-  .video-section { margin: 18px 0 22px; }
-  .video-title { margin: 0 0 10px; }   /* removes default big h2 gap */
+    footer { margin-top:40px; color:#777; font-size:14px; }
 
-  .vimeo { margin: 0; }                /* prevents stacked margins */
-  .vimeo iframe {
-    width: 100%;
-    height: 520px;                     /* desktop default */
-    display: block;                    /* removes inline whitespace */
-    border: 0;
-    border-radius: 12px;               /* optional polish */
-  }
+    /* ✅ Video section: tighter spacing + better mobile layout */
+    .video-section { margin: 18px 0 22px; }
+    .video-title { margin: 0 0 10px; }   /* removes default big h2 gap */
 
-  /* ✅ 4-across thumbnail grid */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;               /* space between tiles */
-    margin-top: 10px;
-  }
+    .vimeo { margin: 0; }                /* prevents stacked margins */
+    .vimeo iframe {
+      width: 100%;
+      height: 520px;                     /* desktop default */
+      display: block;                    /* removes inline whitespace */
+      border: 0;
+      border-radius: 12px;               /* optional polish */
+    }
 
-  .gallery figure { margin: 0; }
+    /* ✅ 4-across thumbnail grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;               /* space between tiles */
+      margin-top: 10px;
+    }
 
-  .gallery a {
-    display: block;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.08);
-    background: #f6f6f6;
-    transition: transform 0.12s ease;
-  }
+    .gallery figure { margin: 0; }
 
-  .gallery a:hover { transform: translateY(-2px); }
+    .gallery a {
+      display: block;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+      background: #f6f6f6;
+      transition: transform 0.12s ease;
+    }
 
-  .gallery img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    display: block;
-  }
+    .gallery a:hover { transform: translateY(-2px); }
 
-  .gallery figcaption {
-    font-size: 13px;
-    color: #444;
-    margin-top: 6px;
-    line-height: 1.25;
-  }
+    .gallery img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
 
-  /* ✅ Responsive: 2 across on tablets, 1 across on phones */
-  @media (max-width: 900px) {
-    .gallery { grid-template-columns: repeat(2, 1fr); }
-    .gallery img { height: 180px; }
-    .vimeo iframe { height: 360px; }   /* optional: nicer on tablets */
-  }
+    .gallery figcaption {
+      font-size: 13px;
+      color: #444;
+      margin-top: 6px;
+      line-height: 1.25;
+    }
 
-  @media (max-width: 520px) {
-    .gallery { grid-template-columns: 1fr; }
-    .gallery img { height: 220px; }
+    /* ✅ Responsive: 2 across on tablets, 1 across on phones */
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery img { height: 180px; }
+      .vimeo iframe { height: 360px; }
+    }
 
-    /* Mobile video tweaks */
-    .video-section { margin: 12px 0 16px; }
-    .video-title { margin-bottom: 8px; }
-    .vimeo iframe { height: 240px; }
-  }
-</style>
+    @media (max-width: 520px) {
+      .gallery { grid-template-columns: 1fr; }
+      .gallery img { height: 220px; }
+
+      /* Mobile video tweaks */
+      .video-section { margin: 12px 0 16px; }
+      .video-title { margin-bottom: 8px; }
+      .vimeo iframe { height: 240px; }
+    }
+
+    /* =========================
+       ✅ LIGHTBOX (captions)
+       ========================= */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 18px;
+    }
+
+    .lightbox.is-open { display: flex; }
+
+    .lightbox-inner {
+      max-width: min(1100px, 96vw);
+      max-height: 86vh;
+      text-align: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 76vh;
+      border-radius: 14px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.45);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .lightbox-caption {
+      color: #eee;
+      margin-top: 10px;
+      font-size: 15px;
+      line-height: 1.35;
+      opacity: 0.95;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover { background: rgba(255,255,255,0.18); }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 64px;
+      border: 0;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-nav:hover { background: rgba(255,255,255,0.18); }
+
+    .lightbox-prev { left: 14px; }
+    .lightbox-next { right: 14px; }
+
+    @media (max-width: 520px) {
+      .lightbox { padding: 12px; }
+      .lightbox-nav { width: 42px; height: 58px; border-radius: 14px; }
+      .lightbox-img { max-height: 70vh; }
+      .lightbox-caption { font-size: 14px; }
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
     <h1>820 Loridans Drive, Atlanta, GA 30342</h1>
-<p class="note">Shared confidentially with qualified agents. Buyer's agent protected. </p>
-<p class="description">
-6 bedroom | 8 bathroom | $4,295,000<br><br>
 
-A rare opportunity to own an architectural statement of luxury and privacy in one of Atlanta’s most coveted residential neighborhoods. Set on 1.2 private acres, this exceptional estate delivers over 8,500 square feet of impeccably finished living space across three stunning levels, all accessible by an elevator and two separate staircases.<br><br>
+    <p class="note">Shared confidentially with qualified agents. Buyer's agent protected.</p>
 
-Every detail reflects award‑winning interiors from soaring ceilings and bespoke millwork, including 3 showpiece Isokern fireplaces, to an effortless flow designed for both grand entertaining and intimate living. At the heart of the home, the spectacular chef’s kitchen is crafted for serious culinary pursuits and unforgettable gatherings. The spacious primary suite offers a true retreat with a spa‑inspired bath featuring a steam shower, a massive custom dressing room with an eight‑foot center island, and its own dedicated laundry.<br><br>
+    <p class="description">
+      6 bedroom | 8 bathroom | $4,295,000<br><br>
 
-Five additional en suite bedrooms, thoughtfully distributed across all three levels, provide exceptional privacy and comfort for family and guests alike. Enhancing everyday livability and entertaining are an additional main‑level laundry room, two powder rooms, temperature‑controlled wine cellar, fully appointed professional‑level bar, billiards lounge, and fully equipped gym, along with a host of curated spaces designed for effortless luxury living.<br><br>
+      A rare opportunity to own an architectural statement of luxury and privacy in one of Atlanta’s most coveted residential neighborhoods. Set on 1.2 private acres, this exceptional estate delivers over 8,500 square feet of impeccably finished living space across three stunning levels, all accessible by an elevator and two separate staircases.<br><br>
 
-Step out to the private backyard outdoor sanctuary, complete with heated pool and spa, built‑in fire pit, and serene wooded views that create seamless indoor‑outdoor living. A circular drive enhances curb appeal and arrival experience, while flexible spaces throughout the home support work, relaxation, and entertaining. All custom furnishings and artwork may be purchased separately, allowing for a turnkey luxury experience.<br><br>
+      Every detail reflects award‑winning interiors from soaring ceilings and bespoke millwork, including 3 showpiece Isokern fireplaces, to an effortless flow designed for both grand entertaining and intimate living. At the heart of the home, the spectacular chef’s kitchen is crafted for serious culinary pursuits and unforgettable gatherings. The spacious primary suite offers a true retreat with a spa‑inspired bath featuring a steam shower, a massive custom dressing room with an eight‑foot center island, and its own dedicated laundry.<br><br>
 
-This is not just a home, it’s a lifestyle defined by elegance, privacy, and impeccable design.
-</p>
+      Five additional en suite bedrooms, thoughtfully distributed across all three levels, provide exceptional privacy and comfort for family and guests alike. Enhancing everyday livability and entertaining are an additional main‑level laundry room, two powder rooms, temperature‑controlled wine cellar, fully appointed professional‑level bar, billiards lounge, and fully equipped gym, along with a host of curated spaces designed for effortless luxury living.<br><br>
 
-    
+      Step out to the private backyard outdoor sanctuary, complete with heated pool and spa, built‑in fire pit, and serene wooded views that create seamless indoor‑outdoor living. A circular drive enhances curb appeal and arrival experience, while flexible spaces throughout the home support work, relaxation, and entertaining. All custom furnishings and artwork may be purchased separately, allowing for a turnkey luxury experience.<br><br>
 
+      This is not just a home, it’s a lifestyle defined by elegance, privacy, and impeccable design.
+    </p>
 
-
-<section class="video-section">
-  <h2 class="video-title">Video Tour</h2>
-  <div class="vimeo">
-    <iframe
-      src="https://player.vimeo.com/video/226053498"
-      width="100%"
-      height="520"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
-
-
-
+    <section class="video-section">
+      <h2 class="video-title">Video Tour</h2>
+      <div class="vimeo">
+        <iframe
+          src="https://player.vimeo.com/video/226053498"
+          width="100%"
+          height="520"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
 
     <h2>Photo Gallery</h2>
 
-<div class="gallery">
-  <figure>
-    <a href="photos_web/Background-for-Kaitlin-shower.jpg"
-       class="lightbox-trigger"
-       data-caption="Primary bath – steam shower">
-      <img src="photos_web/Background-for-Kaitlin-shower.jpg"
-           alt="Primary bath – steam shower"
-           loading="lazy">
-    </a>
-    <figcaption>Primary bath – steam shower</figcaption>
-  </figure>
+    <div class="gallery">
+      <figure>
+        <a href="photos_web/Background-for-Kaitlin-shower.jpg"
+           class="lightbox-trigger"
+           data-caption="Primary bath – steam shower">
+          <img src="photos_web/Background-for-Kaitlin-shower.jpg"
+               alt="Primary bath – steam shower"
+               loading="lazy">
+        </a>
+        <figcaption>Primary bath – steam shower</figcaption>
+      </figure>
 
-  <figure>
-    <a href="photos_web/kitchen.jpg"
-       class="lightbox-trigger"
-       data-caption="Kitchen">
-      <img src="photos_web/kitchen.jpg"
-           alt="Kitchen"
-           loading="lazy">
-    </a>
-    <figcaption>Kitchen</figcaption>
-  </figure>
-</div>
+      <figure>
+        <a href="photos_web/kitchen.jpg"
+           class="lightbox-trigger"
+           data-caption="Kitchen">
+          <img src="photos_web/kitchen.jpg"
+               alt="Kitchen"
+               loading="lazy">
+        </a>
+        <figcaption>Kitchen</figcaption>
+      </figure>
+    </div>
+  </div>
 
-</body>
-</html>
+  <!-- ✅ Lightbox overlay (paste once near the end of <body>) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
+
+    <div class="lightbox-inner" role="dialog" aria-modal="true">
+      <img id="lightbox-img" class="lightbox-img" alt="">
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
+  </div>
+
+  <!-- ✅ Lightbox script -->
+  <script>
+    (function () {
+      const triggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+      const btnClose = lightbox.querySelector('.lightbox-close');
+      const btnPrev = lightbox.querySelector('.lightbox-prev');
+      const btnNext = lightbox.querySelector('.lightbox-next');
+
+      let currentIndex = 0;
+      let lastFocused = null;
+
+      function openLightbox(index) {
+        if (!triggers.length) return;
+        currentIndex = index;
+
+        const a = triggers[currentIndex];
+        const href = a.getAttribute('href');
