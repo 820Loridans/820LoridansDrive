@@ -29,15 +29,15 @@
 
     /* ✅ Video section: tighter spacing + better mobile layout */
     .video-section { margin: 18px 0 22px; }
-    .video-title { margin: 0 0 10px; }   /* removes default big h2 gap */
+    .video-title { margin: 0 0 10px; }
 
     .vimeo { margin: 0; }
     .vimeo iframe {
       width: 100%;
-      height: 520px;                     /* desktop default */
-      display: block;                    /* removes inline whitespace */
+      height: 520px;
+      display: block;
       border: 0;
-      border-radius: 12px;               /* optional polish */
+      border-radius: 12px;
     }
 
     /* ✅ 4-across thumbnail grid */
@@ -82,7 +82,7 @@
     }
 
     @media (max-width: 520px) {
-      body { margin: 18px; } /* nicer on mobile with gray background */
+      body { margin: 18px; }
 
       .gallery { grid-template-columns: 1fr; }
       .gallery img { height: 220px; }
@@ -105,13 +105,15 @@
       z-index: 9999;
       padding: 18px;
     }
-
     .lightbox.is-open { display: flex; }
 
     .lightbox-inner {
       max-width: min(1100px, 96vw);
       max-height: 86vh;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .lightbox-img {
@@ -121,7 +123,6 @@
       box-shadow: 0 10px 35px rgba(0,0,0,0.45);
       display: block;
       margin: 0 auto;
-      cursor: default;
     }
 
     /* Hide caption area in the lightbox */
@@ -129,8 +130,8 @@
 
     .lightbox-close {
       position: absolute;
-      top: 14px;
-      right: 14px;
+      top: calc(14px + env(safe-area-inset-top, 0px));
+      right: calc(14px + env(safe-area-inset-right, 0px));
       width: 44px;
       height: 44px;
       border: 0;
@@ -139,15 +140,15 @@
       color: #fff;
       font-size: 28px;
       cursor: pointer;
+      z-index: 3;
     }
-
     .lightbox-close:hover { background: rgba(255,255,255,0.18); }
 
-    /* Fullscreen toggle button (⛶) */
+    /* Fullscreen toggle button */
     .lightbox-fullscreen {
       position: absolute;
-      top: 14px;
-      right: 66px;              /* sits left of the X button */
+      top: calc(14px + env(safe-area-inset-top, 0px));
+      right: calc(66px + env(safe-area-inset-right, 0px)); /* left of X */
       width: 44px;
       height: 44px;
       border: 0;
@@ -156,11 +157,9 @@
       color: #fff;
       font-size: 18px;
       cursor: pointer;
+      z-index: 3;
     }
-
-    .lightbox-fullscreen:hover {
-      background: rgba(255,255,255,0.18);
-    }
+    .lightbox-fullscreen:hover { background: rgba(255,255,255,0.18); }
 
     .lightbox-nav {
       position: absolute;
@@ -177,12 +176,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 3;
     }
-
     .lightbox-nav:hover { background: rgba(255,255,255,0.18); }
 
-    .lightbox-prev { left: 14px; }
-    .lightbox-next { right: 14px; }
+    .lightbox-prev { left: calc(14px + env(safe-area-inset-left, 0px)); }
+    .lightbox-next { right: calc(14px + env(safe-area-inset-right, 0px)); }
 
     @media (max-width: 520px) {
       .lightbox { padding: 12px; }
@@ -191,21 +190,44 @@
     }
 
     /* =========================
-       ✅ iPhone/iPad fallback: "Max viewport" mode
-       (Used when Fullscreen API is unavailable)
+       ✅ TRUE FULLSCREEN OVERRIDES (Desktop/Android)
+       When the lightbox element is fullscreen, remove constraints
+       ========================= */
+    .lightbox:fullscreen {
+      padding: 0;
+      background: #000;
+    }
+
+    .lightbox:fullscreen .lightbox-inner {
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      max-height: none;
+    }
+
+    .lightbox:fullscreen .lightbox-img {
+      max-width: 100vw;
+      max-height: 100vh;
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    /* =========================
+       ✅ iPhone/iPad fallback: Max-viewport mode
+       (Used when Fullscreen API isn't available)
        ========================= */
     .lightbox.max-viewport {
       padding: 0;
+      background: #000;
     }
 
     .lightbox.max-viewport .lightbox-inner {
-      max-width: 100vw;
-      max-height: 100vh;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      max-height: none;
     }
 
     .lightbox.max-viewport .lightbox-img {
@@ -213,7 +235,8 @@
       max-height: 100vh;
       width: auto;
       height: auto;
-      border-radius: 0; /* full-bleed look */
+      border-radius: 0;
+      box-shadow: none;
     }
 
     /* ===== Hover zoom overlay for gallery thumbnails ===== */
@@ -246,14 +269,10 @@
       backdrop-filter: blur(3px);
     }
 
-    .gallery a:hover img {
-      transform: scale(1.04);
-    }
+    .gallery a:hover img { transform: scale(1.04); }
 
     @media (hover: hover) and (pointer: fine) {
-      .gallery a:hover::after {
-        background: rgba(0,0,0,0.18);
-      }
+      .gallery a:hover::after { background: rgba(0,0,0,0.18); }
       .gallery a:hover::before {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
@@ -301,92 +320,92 @@
 
     <div class="gallery">
       <figure>
-        <a href="photos_web/1-820 Loridans Dr NE-1.jpg" class="lightbox-trigger">
-          <img src="photos_web/1-820 Loridans Dr NE-1.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/1-820 Loridans Dr NE-1.jpg" class="lightbox-trigger" data-caption="Photo 1">
+          <img src="photos_web/1-820 Loridans Dr NE-1.jpg" alt="Photo 1" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/2-820 Loridans Dr NE-2.jpg" class="lightbox-trigger">
-          <img src="photos_web/2-820 Loridans Dr NE-2.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/2-820 Loridans Dr NE-2.jpg" class="lightbox-trigger" data-caption="Photo 2">
+          <img src="photos_web/2-820 Loridans Dr NE-2.jpg" alt="Photo 2" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/3-820 Loridans Dr NE-3.jpg" class="lightbox-trigger">
-          <img src="photos_web/3-820 Loridans Dr NE-3.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/3-820 Loridans Dr NE-3.jpg" class="lightbox-trigger" data-caption="Photo 3">
+          <img src="photos_web/3-820 Loridans Dr NE-3.jpg" alt="Photo 3" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/4-820 Loridans Dr NE-4.jpg" class="lightbox-trigger">
-          <img src="photos_web/4-820 Loridans Dr NE-4.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/4-820 Loridans Dr NE-4.jpg" class="lightbox-trigger" data-caption="Photo 4">
+          <img src="photos_web/4-820 Loridans Dr NE-4.jpg" alt="Photo 4" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/5-820 Loridans Dr NE-5.jpg" class="lightbox-trigger">
-          <img src="photos_web/5-820 Loridans Dr NE-5.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/5-820 Loridans Dr NE-5.jpg" class="lightbox-trigger" data-caption="Photo 5">
+          <img src="photos_web/5-820 Loridans Dr NE-5.jpg" alt="Photo 5" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/6-820 Loridans Dr NE-6.jpg" class="lightbox-trigger">
-          <img src="photos_web/6-820 Loridans Dr NE-6.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/6-820 Loridans Dr NE-6.jpg" class="lightbox-trigger" data-caption="Photo 6">
+          <img src="photos_web/6-820 Loridans Dr NE-6.jpg" alt="Photo 6" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/7-820 Loridans Dr NE-7.jpg" class="lightbox-trigger">
-          <img src="photos_web/7-820 Loridans Dr NE-7.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/7-820 Loridans Dr NE-7.jpg" class="lightbox-trigger" data-caption="Photo 7">
+          <img src="photos_web/7-820 Loridans Dr NE-7.jpg" alt="Photo 7" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/8-820 Loridans Dr NE-8.jpg" class="lightbox-trigger">
-          <img src="photos_web/8-820 Loridans Dr NE-8.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/8-820 Loridans Dr NE-8.jpg" class="lightbox-trigger" data-caption="Photo 8">
+          <img src="photos_web/8-820 Loridans Dr NE-8.jpg" alt="Photo 8" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/9-820 Loridans Dr NE-9.jpg" class="lightbox-trigger">
-          <img src="photos_web/9-820 Loridans Dr NE-9.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/9-820 Loridans Dr NE-9.jpg" class="lightbox-trigger" data-caption="Photo 9">
+          <img src="photos_web/9-820 Loridans Dr NE-9.jpg" alt="Photo 9" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/10-820 Loridans Dr NE-10.jpg" class="lightbox-trigger">
-          <img src="photos_web/10-820 Loridans Dr NE-10.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/10-820 Loridans Dr NE-10.jpg" class="lightbox-trigger" data-caption="Photo 10">
+          <img src="photos_web/10-820 Loridans Dr NE-10.jpg" alt="Photo 10" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/11-820 Loridans Dr NE-11.jpg" class="lightbox-trigger">
-          <img src="photos_web/11-820 Loridans Dr NE-11.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/11-820 Loridans Dr NE-11.jpg" class="lightbox-trigger" data-caption="Photo 11">
+          <img src="photos_web/11-820 Loridans Dr NE-11.jpg" alt="Photo 11" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/12-820 Loridans Dr NE-12.jpg" class="lightbox-trigger">
-          <img src="photos_web/12-820 Loridans Dr NE-12.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/12-820 Loridans Dr NE-12.jpg" class="lightbox-trigger" data-caption="Photo 12">
+          <img src="photos_web/12-820 Loridans Dr NE-12.jpg" alt="Photo 12" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/13-820 Loridans Dr NE-13.jpg" class="lightbox-trigger">
-          <img src="photos_web/13-820 Loridans Dr NE-13.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/13-820 Loridans Dr NE-13.jpg" class="lightbox-trigger" data-caption="Photo 13">
+          <img src="photos_web/13-820 Loridans Dr NE-13.jpg" alt="Photo 13" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/14-820 Loridans Dr NE-14.jpg" class="lightbox-trigger">
-          <img src="photos_web/14-820 Loridans Dr NE-14.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/14-820 Loridans Dr NE-14.jpg" class="lightbox-trigger" data-caption="Photo 14">
+          <img src="photos_web/14-820 Loridans Dr NE-14.jpg" alt="Photo 14" loading="lazy">
         </a>
       </figure>
 
       <figure>
-        <a href="photos_web/15-820 Loridans Dr NE-15.jpg" class="lightbox-trigger">
-          <img src="photos_web/15-820 Loridans Dr NE-15.jpg" alt="Photo" loading="lazy">
+        <a href="photos_web/15-820 Loridans Dr NE-15.jpg" class="lightbox-trigger" data-caption="Photo 15">
+          <img src="photos_web/15-820 Loridans Dr NE-15.jpg" alt="Photo 15" loading="lazy">
         </a>
       </figure>
     </div>
@@ -407,7 +426,7 @@
     <button type="button" class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
   </div>
 
-  <!-- ✅ Lightbox script + fullscreen + iPhone max-viewport fallback -->
+  <!-- ✅ Lightbox script (keeps expanded mode when changing photos) -->
   <script>
     (function () {
       const triggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
@@ -422,39 +441,37 @@
       let currentIndex = 0;
       let lastFocused = null;
 
-      // Fullscreen API availability
+      // Fullscreen API availability (desktop/Android mostly)
       const canFullscreen = !!(document.fullscreenEnabled && lightbox.requestFullscreen);
+
+      // Track whether user wants expanded view
+      // "expanded" means: Fullscreen (if supported) OR max-viewport fallback
+      let expanded = false;
 
       function setFsIcon(isActive) {
         if (!btnFs) return;
         btnFs.textContent = isActive ? "⤢" : "⛶";
       }
 
-      function isMaxViewport() {
-        return lightbox.classList.contains('max-viewport');
-      }
-
-      function openLightbox(index) {
-        if (!triggers.length) return;
+      function loadImage(index) {
         currentIndex = index;
-
         const a = triggers[currentIndex];
         const href = a.getAttribute('href');
         const cap = a.getAttribute('data-caption') || a.querySelector('img')?.alt || '';
 
-        lastFocused = document.activeElement;
-
-        // reset modes on open
-        lightbox.classList.remove('max-viewport');
-        setFsIcon(false);
-
         img.src = href;
         img.alt = cap;
         if (caption) caption.textContent = cap;
+      }
+
+      function openLightbox(index) {
+        if (!triggers.length) return;
+        lastFocused = document.activeElement;
+
+        loadImage(index);
 
         lightbox.classList.add('is-open');
         lightbox.setAttribute('aria-hidden', 'false');
-
         document.body.style.overflow = 'hidden';
         btnClose.focus();
       }
@@ -465,52 +482,68 @@
         }
       }
 
+      function applyExpandedState() {
+        // If expanded is on:
+        // - Desktop/Android: requestFullscreen
+        // - iPhone/iPad: use max-viewport class
+        if (!expanded) {
+          // turn off both
+          exitFullscreenIfNeeded();
+          lightbox.classList.remove('max-viewport');
+          setFsIcon(false);
+          return;
+        }
+
+        if (canFullscreen) {
+          if (!document.fullscreenElement) {
+            lightbox.requestFullscreen().catch(() => {});
+          }
+          // In true fullscreen, we don't need max-viewport class
+          lightbox.classList.remove('max-viewport');
+          setFsIcon(true);
+        } else {
+          // iOS fallback
+          lightbox.classList.add('max-viewport');
+          setFsIcon(true);
+        }
+      }
+
       function closeLightbox() {
-        // Exit any fullscreen / max-viewport mode
-        exitFullscreenIfNeeded();
-        lightbox.classList.remove('max-viewport');
-        setFsIcon(false);
+        expanded = false;
+        applyExpandedState();
 
         lightbox.classList.remove('is-open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
 
-        // stop loading/decoding on mobile
         img.src = '';
 
         if (lastFocused) lastFocused.focus();
       }
 
       function showNext() {
-        openLightbox((currentIndex + 1) % triggers.length);
+        loadImage((currentIndex + 1) % triggers.length);
+        // keep expanded mode when changing photos
+        applyExpandedState();
       }
 
       function showPrev() {
-        openLightbox((currentIndex - 1 + triggers.length) % triggers.length);
+        loadImage((currentIndex - 1 + triggers.length) % triggers.length);
+        applyExpandedState();
       }
 
       function toggleFullscreenOrMaxViewport() {
-        // If browser supports true fullscreen (desktop/Android), use it
-        if (canFullscreen) {
-          if (!document.fullscreenElement) {
-            lightbox.requestFullscreen().catch(() => {});
-            setFsIcon(true);
-          } else {
-            exitFullscreenIfNeeded();
-            setFsIcon(false);
-          }
-          return;
-        }
-
-        // iPhone/iPad fallback: toggle max-viewport mode
-        lightbox.classList.toggle('max-viewport');
-        setFsIcon(isMaxViewport());
+        expanded = !expanded;
+        applyExpandedState();
       }
 
       // Thumbnail click handlers
       triggers.forEach((a, i) => {
         a.addEventListener('click', (e) => {
           e.preventDefault();
+          expanded = false;             // start normal each time user opens
+          lightbox.classList.remove('max-viewport');
+          setFsIcon(false);
           openLightbox(i);
         });
       });
@@ -525,10 +558,17 @@
           toggleFullscreenOrMaxViewport();
         });
 
-        // Keep icon in sync when user exits fullscreen via OS/browser controls
+        // Keep icon/state in sync if user exits fullscreen via browser controls
         document.addEventListener('fullscreenchange', () => {
           if (!canFullscreen) return;
-          setFsIcon(!!document.fullscreenElement);
+          // If fullscreen ended externally, reflect that
+          if (!document.fullscreenElement && expanded) {
+            expanded = false;
+            setFsIcon(false);
+          }
+          if (document.fullscreenElement) {
+            setFsIcon(true);
+          }
         });
       }
 
