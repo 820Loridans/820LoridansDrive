@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,13 @@
   <title>820 Loridans Drive</title>
 
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; color: #222; background: #f4f3f1; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      color: #222;
+      background: #f4f3f1; /* warm light gray */
+    }
+
     .container { max-width: 1100px; margin: auto; }
     h1 { letter-spacing: 0.5px; }
     .note { color:#555; margin-bottom:20px; }
@@ -26,7 +31,7 @@
     .video-section { margin: 18px 0 22px; }
     .video-title { margin: 0 0 10px; }   /* removes default big h2 gap */
 
-    .vimeo { margin: 0; }                /* prevents stacked margins */
+    .vimeo { margin: 0; }
     .vimeo iframe {
       width: 100%;
       height: 520px;                     /* desktop default */
@@ -39,7 +44,7 @@
     .gallery {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;               /* space between tiles */
+      gap: 14px;
       margin-top: 10px;
     }
 
@@ -52,6 +57,8 @@
       box-shadow: 0 1px 8px rgba(0,0,0,0.08);
       background: #f6f6f6;
       transition: transform 0.12s ease;
+      position: relative; /* needed for overlay */
+      cursor: zoom-in;
     }
 
     .gallery a:hover { transform: translateY(-2px); }
@@ -61,15 +68,11 @@
       height: 170px;
       object-fit: cover;
       display: block;
+      transition: transform 0.18s ease;
     }
-/* Hide captions under thumbnails */
-   .gallery figcaption {display: none;}
-.gallery figcaption {
-      font-size: 13px;
-      color: #444;
-      margin-top: 6px;
-      line-height: 1.25;
-    }
+
+    /* Hide captions under thumbnails */
+    .gallery figcaption { display: none; }
 
     /* ✅ Responsive: 2 across on tablets, 1 across on phones */
     @media (max-width: 900px) {
@@ -79,17 +82,18 @@
     }
 
     @media (max-width: 520px) {
+      body { margin: 18px; } /* nicer on mobile with gray background */
+
       .gallery { grid-template-columns: 1fr; }
       .gallery img { height: 220px; }
 
-      /* Mobile video tweaks */
       .video-section { margin: 12px 0 16px; }
       .video-title { margin-bottom: 8px; }
       .vimeo iframe { height: 240px; }
     }
 
     /* =========================
-       ✅ LIGHTBOX (captions)
+       ✅ LIGHTBOX
        ========================= */
     .lightbox {
       position: fixed;
@@ -117,16 +121,11 @@
       box-shadow: 0 10px 35px rgba(0,0,0,0.45);
       display: block;
       margin: 0 auto;
+      cursor: default;
     }
-/* Hide caption area in the lightbox */
+
+    /* Hide caption area in the lightbox */
     .lightbox-caption { display: none; }
-    .lightbox-caption {
-      color: #eee;
-      margin-top: 10px;
-      font-size: 15px;
-      line-height: 1.35;
-      opacity: 0.95;
-    }
 
     .lightbox-close {
       position: absolute;
@@ -143,6 +142,25 @@
     }
 
     .lightbox-close:hover { background: rgba(255,255,255,0.18); }
+
+    /* Fullscreen toggle button (⛶) */
+    .lightbox-fullscreen {
+      position: absolute;
+      top: 14px;
+      right: 66px;              /* sits left of the X button */
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .lightbox-fullscreen:hover {
+      background: rgba(255,255,255,0.18);
+    }
 
     .lightbox-nav {
       position: absolute;
@@ -170,67 +188,77 @@
       .lightbox { padding: 12px; }
       .lightbox-nav { width: 42px; height: 58px; border-radius: 14px; }
       .lightbox-img { max-height: 70vh; }
-      .lightbox-caption { font-size: 14px; }
     }
 
-/* ===== Hover zoom overlay for gallery thumbnails ===== */
+    /* =========================
+       ✅ iPhone/iPad fallback: "Max viewport" mode
+       (Used when Fullscreen API is unavailable)
+       ========================= */
+    .lightbox.max-viewport {
+      padding: 0;
+    }
 
-/* Ensure the link is the positioning container */
-.gallery a {
-  position: relative;
-}
+    .lightbox.max-viewport .lightbox-inner {
+      max-width: 100vw;
+      max-height: 100vh;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-/* Create the dark overlay */
-.gallery a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.0);
-  transition: background 0.15s ease;
-}
+    .lightbox.max-viewport .lightbox-img {
+      max-width: 100vw;
+      max-height: 100vh;
+      width: auto;
+      height: auto;
+      border-radius: 0; /* full-bleed look */
+    }
 
-/* Create the magnifier icon */
-.gallery a::before {
-  content: "⌕"; /* simple magnifier */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.95);
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.16);
-  color: #fff;
-  font-size: 26px;
-  line-height: 44px;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  z-index: 2;
-  pointer-events: none;
-  backdrop-filter: blur(3px);
-}
+    /* ===== Hover zoom overlay for gallery thumbnails ===== */
+    .gallery a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.0);
+      transition: background 0.15s ease;
+    }
 
-/* Zoom the image slightly on hover */
-.gallery a:hover img {
-  transform: scale(1.04);
-}
+    .gallery a::before {
+      content: "⌕";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+      font-size: 26px;
+      line-height: 44px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      z-index: 2;
+      pointer-events: none;
+      backdrop-filter: blur(3px);
+    }
 
-/* Smooth image transform */
-.gallery img {
-  transition: transform 0.18s ease;
-}
+    .gallery a:hover img {
+      transform: scale(1.04);
+    }
 
-/* Show overlay + icon on hover (desktop) */
-@media (hover: hover) and (pointer: fine) {
-  .gallery a:hover::after {
-    background: rgba(0,0,0,0.18);
-  }
-  .gallery a:hover::before {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
+    @media (hover: hover) and (pointer: fine) {
+      .gallery a:hover::after {
+        background: rgba(0,0,0,0.18);
+      }
+      .gallery a:hover::before {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
   </style>
 </head>
 
@@ -269,170 +297,117 @@
     </section>
 
     <h2>Photo Gallery</h2>
-<p style="color:#666; margin-top:-8px; font-size:14px;">
-  Tap any photo to enlarge.
-</p>
+    <p style="color:#666; margin-top:-8px; font-size:14px;">Tap any photo to enlarge.</p>
+
     <div class="gallery">
       <figure>
-        <a href="photos_web/1-820 Loridans Dr NE-1.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/1-820 Loridans Dr NE-1.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
+        <a href="photos_web/1-820 Loridans Dr NE-1.jpg" class="lightbox-trigger">
+          <img src="photos_web/1-820 Loridans Dr NE-1.jpg" alt="Photo" loading="lazy">
         </a>
-        <figcaption>Primary bath – steam shower</figcaption>
       </figure>
 
       <figure>
-        <a href="photos_web/2-820 Loridans Dr NE-2.jpg"
-           class="lightbox-trigger"
-           data-caption="Kitchen">
-          <img src="photos_web/2-820 Loridans Dr NE-2.jpg"
-               alt="Kitchen"
-               loading="lazy">
+        <a href="photos_web/2-820 Loridans Dr NE-2.jpg" class="lightbox-trigger">
+          <img src="photos_web/2-820 Loridans Dr NE-2.jpg" alt="Photo" loading="lazy">
         </a>
-        <figcaption>Kitchen</figcaption>
       </figure>
+
       <figure>
-        <a href="photos_web/3-820 Loridans Dr NE-3.jpg"
-           class="lightbox-trigger"
-           data-caption="Laundry Room">
-          <img src="photos_web/3-820 Loridans Dr NE-3.jpg"
-               alt="Laundry Room"
-               loading="lazy">
+        <a href="photos_web/3-820 Loridans Dr NE-3.jpg" class="lightbox-trigger">
+          <img src="photos_web/3-820 Loridans Dr NE-3.jpg" alt="Photo" loading="lazy">
         </a>
-        <figcaption>Laundry Room</figcaption>
       </figure>
+
       <figure>
-        <a href="photos_web/4-820 Loridans Dr NE-4.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/4-820 Loridans Dr NE-4.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
+        <a href="photos_web/4-820 Loridans Dr NE-4.jpg" class="lightbox-trigger">
+          <img src="photos_web/4-820 Loridans Dr NE-4.jpg" alt="Photo" loading="lazy">
         </a>
-        <figcaption>Primary bath – steam shower</figcaption>
       </figure>
+
       <figure>
-        <a href="photos_web/5-820 Loridans Dr NE-5.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/5-820 Loridans Dr NE-5.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
+        <a href="photos_web/5-820 Loridans Dr NE-5.jpg" class="lightbox-trigger">
+          <img src="photos_web/5-820 Loridans Dr NE-5.jpg" alt="Photo" loading="lazy">
         </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/6-820 Loridans Dr NE-6.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/6-820 Loridans Dr NE-6.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/7-820 Loridans Dr NE-7.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/7-820 Loridans Dr NE-7.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/8-820 Loridans Dr NE-8.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/8-820 Loridans Dr NE-8.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/9-820 Loridans Dr NE-9.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/9-820 Loridans Dr NE-9.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/10-820 Loridans Dr NE-10.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/10-820 Loridans Dr NE-10.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/11-820 Loridans Dr NE-11.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/11-820 Loridans Dr NE-11.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/12-820 Loridans Dr NE-12.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/12-820 Loridans Dr NE-12.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/13-820 Loridans Dr NE-13.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/13-820 Loridans Dr NE-13.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
-      </figure><figure>
-        <a href="photos_web/14-820 Loridans Dr NE-14.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/14-820 Loridans Dr NE-14.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
-        </a>
-        <figcaption>Primary bath – steam shower</figcaption>
       </figure>
+
       <figure>
-        <a href="photos_web/15-820 Loridans Dr NE-15.jpg"
-           class="lightbox-trigger"
-           data-caption="Primary bath – steam shower">
-          <img src="photos_web/15-820 Loridans Dr NE-15.jpg"
-               alt="Primary bath – steam shower"
-               loading="lazy">
+        <a href="photos_web/6-820 Loridans Dr NE-6.jpg" class="lightbox-trigger">
+          <img src="photos_web/6-820 Loridans Dr NE-6.jpg" alt="Photo" loading="lazy">
         </a>
-        <figcaption>Primary bath – steam shower</figcaption>
+      </figure>
+
+      <figure>
+        <a href="photos_web/7-820 Loridans Dr NE-7.jpg" class="lightbox-trigger">
+          <img src="photos_web/7-820 Loridans Dr NE-7.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/8-820 Loridans Dr NE-8.jpg" class="lightbox-trigger">
+          <img src="photos_web/8-820 Loridans Dr NE-8.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/9-820 Loridans Dr NE-9.jpg" class="lightbox-trigger">
+          <img src="photos_web/9-820 Loridans Dr NE-9.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/10-820 Loridans Dr NE-10.jpg" class="lightbox-trigger">
+          <img src="photos_web/10-820 Loridans Dr NE-10.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/11-820 Loridans Dr NE-11.jpg" class="lightbox-trigger">
+          <img src="photos_web/11-820 Loridans Dr NE-11.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/12-820 Loridans Dr NE-12.jpg" class="lightbox-trigger">
+          <img src="photos_web/12-820 Loridans Dr NE-12.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/13-820 Loridans Dr NE-13.jpg" class="lightbox-trigger">
+          <img src="photos_web/13-820 Loridans Dr NE-13.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/14-820 Loridans Dr NE-14.jpg" class="lightbox-trigger">
+          <img src="photos_web/14-820 Loridans Dr NE-14.jpg" alt="Photo" loading="lazy">
+        </a>
+      </figure>
+
+      <figure>
+        <a href="photos_web/15-820 Loridans Dr NE-15.jpg" class="lightbox-trigger">
+          <img src="photos_web/15-820 Loridans Dr NE-15.jpg" alt="Photo" loading="lazy">
+        </a>
       </figure>
     </div>
   </div>
 
-  <!-- ✅ Lightbox overlay (paste once near the end of <body>) -->
+  <!-- ✅ Lightbox overlay -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <button type="button" class="lightbox-fullscreen" aria-label="Toggle fullscreen">⛶</button>
 
-    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
 
     <div class="lightbox-inner" role="dialog" aria-modal="true">
       <img id="lightbox-img" class="lightbox-img" alt="">
       <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
-    <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
   </div>
 
-  <!-- ✅ Lightbox script -->
+  <!-- ✅ Lightbox script + fullscreen + iPhone max-viewport fallback -->
   <script>
     (function () {
       const triggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
@@ -442,9 +417,22 @@
       const btnClose = lightbox.querySelector('.lightbox-close');
       const btnPrev = lightbox.querySelector('.lightbox-prev');
       const btnNext = lightbox.querySelector('.lightbox-next');
+      const btnFs   = lightbox.querySelector('.lightbox-fullscreen');
 
       let currentIndex = 0;
       let lastFocused = null;
+
+      // Fullscreen API availability
+      const canFullscreen = !!(document.fullscreenEnabled && lightbox.requestFullscreen);
+
+      function setFsIcon(isActive) {
+        if (!btnFs) return;
+        btnFs.textContent = isActive ? "⤢" : "⛶";
+      }
+
+      function isMaxViewport() {
+        return lightbox.classList.contains('max-viewport');
+      }
 
       function openLightbox(index) {
         if (!triggers.length) return;
@@ -456,9 +444,13 @@
 
         lastFocused = document.activeElement;
 
+        // reset modes on open
+        lightbox.classList.remove('max-viewport');
+        setFsIcon(false);
+
         img.src = href;
         img.alt = cap;
-        caption.textContent = cap;
+        if (caption) caption.textContent = cap;
 
         lightbox.classList.add('is-open');
         lightbox.setAttribute('aria-hidden', 'false');
@@ -467,11 +459,25 @@
         btnClose.focus();
       }
 
+      function exitFullscreenIfNeeded() {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+
       function closeLightbox() {
+        // Exit any fullscreen / max-viewport mode
+        exitFullscreenIfNeeded();
+        lightbox.classList.remove('max-viewport');
+        setFsIcon(false);
+
         lightbox.classList.remove('is-open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+
+        // stop loading/decoding on mobile
         img.src = '';
+
         if (lastFocused) lastFocused.focus();
       }
 
@@ -481,6 +487,24 @@
 
       function showPrev() {
         openLightbox((currentIndex - 1 + triggers.length) % triggers.length);
+      }
+
+      function toggleFullscreenOrMaxViewport() {
+        // If browser supports true fullscreen (desktop/Android), use it
+        if (canFullscreen) {
+          if (!document.fullscreenElement) {
+            lightbox.requestFullscreen().catch(() => {});
+            setFsIcon(true);
+          } else {
+            exitFullscreenIfNeeded();
+            setFsIcon(false);
+          }
+          return;
+        }
+
+        // iPhone/iPad fallback: toggle max-viewport mode
+        lightbox.classList.toggle('max-viewport');
+        setFsIcon(isMaxViewport());
       }
 
       // Thumbnail click handlers
@@ -493,6 +517,20 @@
 
       // Close handlers
       btnClose.addEventListener('click', closeLightbox);
+
+      // Fullscreen/max-viewport handler
+      if (btnFs) {
+        btnFs.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleFullscreenOrMaxViewport();
+        });
+
+        // Keep icon in sync when user exits fullscreen via OS/browser controls
+        document.addEventListener('fullscreenchange', () => {
+          if (!canFullscreen) return;
+          setFsIcon(!!document.fullscreenElement);
+        });
+      }
 
       // Click outside image closes
       lightbox.addEventListener('click', (e) => {
@@ -532,4 +570,3 @@
   </script>
 </body>
 </html>
-
