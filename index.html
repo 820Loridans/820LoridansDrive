@@ -191,7 +191,6 @@
 
     /* =========================
        ✅ TRUE FULLSCREEN OVERRIDES (Desktop/Android)
-       When the lightbox element is fullscreen, remove constraints
        ========================= */
     .lightbox:fullscreen {
       padding: 0;
@@ -216,7 +215,6 @@
 
     /* =========================
        ✅ iPhone/iPad fallback: Max-viewport mode
-       (Used when Fullscreen API isn't available)
        ========================= */
     .lightbox.max-viewport {
       padding: 0;
@@ -319,95 +317,91 @@
     <p style="color:#666; margin-top:-8px; font-size:14px;">Tap any photo to enlarge.</p>
 
     <div class="gallery">
-      <figure>
-        <a href="photos_web/1-820 Loridans Dr NE-1.jpg" class="lightbox-trigger" data-caption="Photo 1">
-          <img src="photos_web/1-820 Loridans Dr NE-1.jpg" alt="Photo 1" loading="lazy">
-        </a>
-      </figure>
 
-      <figure>
-        <a href="photos_web/2-820 Loridans Dr NE-2.jpg" class="lightbox-trigger" data-caption="Photo 2">
-          <img src="photos_web/2-820 Loridans Dr NE-2.jpg" alt="Photo 2" loading="lazy">
-        </a>
-      </figure>
+      <!-- Photos 1–77 -->
+      <!-- TIP: Captions are hidden, but we keep alt/data-caption for accessibility and consistency. -->
 
-      <figure>
-        <a href="photos_web/3-820 Loridans Dr NE-3.jpg" class="lightbox-trigger" data-caption="Photo 3">
-          <img src="photos_web/3-820 Loridans Dr NE-3.jpg" alt="Photo 3" loading="lazy">
-        </a>
-      </figure>
+      <!-- 1–15 -->
+      <figure><a href="photos_web/1-820 Loridans Dr NE-1.jpg" class="lightbox-trigger" data-caption="Photo 1"><img src="photos_web/1-820 Loridans Dr NE-1.jpg" alt="Photo 1" loading="lazy"></a></figure>
+      <figure><a href="photos_web/2-820 Loridans Dr NE-2.jpg" class="lightbox-trigger" data-caption="Photo 2"><img src="photos_web/2-820 Loridans Dr NE-2.jpg" alt="Photo 2" loading="lazy"></a></figure>
+      <figure><a href="photos_web/3-820 Loridans Dr NE-3.jpg" class="lightbox-trigger" data-caption="Photo 3"><img src="photos_web/3-820 Loridans Dr NE-3.jpg" alt="Photo 3" loading="lazy"></a></figure>
+      <figure><a href="photos_web/4-820 Loridans Dr NE-4.jpg" class="lightbox-trigger" data-caption="Photo 4"><img src="photos_web/4-820 Loridans Dr NE-4.jpg" alt="Photo 4" loading="lazy"></a></figure>
+      <figure><a href="photos_web/5-820 Loridans Dr NE-5.jpg" class="lightbox-trigger" data-caption="Photo 5"><img src="photos_web/5-820 Loridans Dr NE-5.jpg" alt="Photo 5" loading="lazy"></a></figure>
+      <figure><a href="photos_web/6-820 Loridans Dr NE-6.jpg" class="lightbox-trigger" data-caption="Photo 6"><img src="photos_web/6-820 Loridans Dr NE-6.jpg" alt="Photo 6" loading="lazy"></a></figure>
+      <figure><a href="photos_web/7-820 Loridans Dr NE-7.jpg" class="lightbox-trigger" data-caption="Photo 7"><img src="photos_web/7-820 Loridans Dr NE-7.jpg" alt="Photo 7" loading="lazy"></a></figure>
+      <figure><a href="photos_web/8-820 Loridans Dr NE-8.jpg" class="lightbox-trigger" data-caption="Photo 8"><img src="photos_web/8-820 Loridans Dr NE-8.jpg" alt="Photo 8" loading="lazy"></a></figure>
+      <figure><a href="photos_web/9-820 Loridans Dr NE-9.jpg" class="lightbox-trigger" data-caption="Photo 9"><img src="photos_web/9-820 Loridans Dr NE-9.jpg" alt="Photo 9" loading="lazy"></a></figure>
+      <figure><a href="photos_web/10-820 Loridans Dr NE-10.jpg" class="lightbox-trigger" data-caption="Photo 10"><img src="photos_web/10-820 Loridans Dr NE-10.jpg" alt="Photo 10" loading="lazy"></a></figure>
+      <figure><a href="photos_web/11-820 Loridans Dr NE-11.jpg" class="lightbox-trigger" data-caption="Photo 11"><img src="photos_web/11-820 Loridans Dr NE-11.jpg" alt="Photo 11" loading="lazy"></a></figure>
+      <figure><a href="photos_web/12-820 Loridans Dr NE-12.jpg" class="lightbox-trigger" data-caption="Photo 12"><img src="photos_web/12-820 Loridans Dr NE-12.jpg" alt="Photo 12" loading="lazy"></a></figure>
+      <figure><a href="photos_web/13-820 Loridans Dr NE-13.jpg" class="lightbox-trigger" data-caption="Photo 13"><img src="photos_web/13-820 Loridans Dr NE-13.jpg" alt="Photo 13" loading="lazy"></a></figure>
+      <figure><a href="photos_web/14-820 Loridans Dr NE-14.jpg" class="lightbox-trigger" data-caption="Photo 14"><img src="photos_web/14-820 Loridans Dr NE-14.jpg" alt="Photo 14" loading="lazy"></a></figure>
+      <figure><a href="photos_web/15-820 Loridans Dr NE-15.jpg" class="lightbox-trigger" data-caption="Photo 15"><img src="photos_web/15-820 Loridans Dr NE-15.jpg" alt="Photo 15" loading="lazy"></a></figure>
 
-      <figure>
-        <a href="photos_web/4-820 Loridans Dr NE-4.jpg" class="lightbox-trigger" data-caption="Photo 4">
-          <img src="photos_web/4-820 Loridans Dr NE-4.jpg" alt="Photo 4" loading="lazy">
-        </a>
-      </figure>
+      <!-- 16–77 -->
+      <figure><a href="photos_web/16-820 Loridans Dr NE-16.jpg" class="lightbox-trigger" data-caption="Photo 16"><img src="photos_web/16-820 Loridans Dr NE-16.jpg" alt="Photo 16" loading="lazy"></a></figure>
+      <figure><a href="photos_web/17-820 Loridans Dr NE-17.jpg" class="lightbox-trigger" data-caption="Photo 17"><img src="photos_web/17-820 Loridans Dr NE-17.jpg" alt="Photo 17" loading="lazy"></a></figure>
+      <figure><a href="photos_web/18-820 Loridans Dr NE-18.jpg" class="lightbox-trigger" data-caption="Photo 18"><img src="photos_web/18-820 Loridans Dr NE-18.jpg" alt="Photo 18" loading="lazy"></a></figure>
+      <figure><a href="photos_web/19-820 Loridans Dr NE-19.jpg" class="lightbox-trigger" data-caption="Photo 19"><img src="photos_web/19-820 Loridans Dr NE-19.jpg" alt="Photo 19" loading="lazy"></a></figure>
+      <figure><a href="photos_web/20-820 Loridans Dr NE-20.jpg" class="lightbox-trigger" data-caption="Photo 20"><img src="photos_web/20-820 Loridans Dr NE-20.jpg" alt="Photo 20" loading="lazy"></a></figure>
+      <figure><a href="photos_web/21-820 Loridans Dr NE-21.jpg" class="lightbox-trigger" data-caption="Photo 21"><img src="photos_web/21-820 Loridans Dr NE-21.jpg" alt="Photo 21" loading="lazy"></a></figure>
+      <figure><a href="photos_web/22-820 Loridans Dr NE-22.jpg" class="lightbox-trigger" data-caption="Photo 22"><img src="photos_web/22-820 Loridans Dr NE-22.jpg" alt="Photo 22" loading="lazy"></a></figure>
+      <figure><a href="photos_web/23-820 Loridans Dr NE-23.jpg" class="lightbox-trigger" data-caption="Photo 23"><img src="photos_web/23-820 Loridans Dr NE-23.jpg" alt="Photo 23" loading="lazy"></a></figure>
+      <figure><a href="photos_web/24-820 Loridans Dr NE-24.jpg" class="lightbox-trigger" data-caption="Photo 24"><img src="photos_web/24-820 Loridans Dr NE-24.jpg" alt="Photo 24" loading="lazy"></a></figure>
+      <figure><a href="photos_web/25-820 Loridans Dr NE-25.jpg" class="lightbox-trigger" data-caption="Photo 25"><img src="photos_web/25-820 Loridans Dr NE-25.jpg" alt="Photo 25" loading="lazy"></a></figure>
+      <figure><a href="photos_web/26-820 Loridans Dr NE-26.jpg" class="lightbox-trigger" data-caption="Photo 26"><img src="photos_web/26-820 Loridans Dr NE-26.jpg" alt="Photo 26" loading="lazy"></a></figure>
+      <figure><a href="photos_web/27-820 Loridans Dr NE-27.jpg" class="lightbox-trigger" data-caption="Photo 27"><img src="photos_web/27-820 Loridans Dr NE-27.jpg" alt="Photo 27" loading="lazy"></a></figure>
+      <figure><a href="photos_web/28-820 Loridans Dr NE-28.jpg" class="lightbox-trigger" data-caption="Photo 28"><img src="photos_web/28-820 Loridans Dr NE-28.jpg" alt="Photo 28" loading="lazy"></a></figure>
+      <figure><a href="photos_web/29-820 Loridans Dr NE-29.jpg" class="lightbox-trigger" data-caption="Photo 29"><img src="photos_web/29-820 Loridans Dr NE-29.jpg" alt="Photo 29" loading="lazy"></a></figure>
+      <figure><a href="photos_web/30-820 Loridans Dr NE-30.jpg" class="lightbox-trigger" data-caption="Photo 30"><img src="photos_web/30-820 Loridans Dr NE-30.jpg" alt="Photo 30" loading="lazy"></a></figure>
+      <figure><a href="photos_web/31-820 Loridans Dr NE-31.jpg" class="lightbox-trigger" data-caption="Photo 31"><img src="photos_web/31-820 Loridans Dr NE-31.jpg" alt="Photo 31" loading="lazy"></a></figure>
+      <figure><a href="photos_web/32-820 Loridans Dr NE-32.jpg" class="lightbox-trigger" data-caption="Photo 32"><img src="photos_web/32-820 Loridans Dr NE-32.jpg" alt="Photo 32" loading="lazy"></a></figure>
+      <figure><a href="photos_web/33-820 Loridans Dr NE-33.jpg" class="lightbox-trigger" data-caption="Photo 33"><img src="photos_web/33-820 Loridans Dr NE-33.jpg" alt="Photo 33" loading="lazy"></a></figure>
+      <figure><a href="photos_web/34-820 Loridans Dr NE-34.jpg" class="lightbox-trigger" data-caption="Photo 34"><img src="photos_web/34-820 Loridans Dr NE-34.jpg" alt="Photo 34" loading="lazy"></a></figure>
+      <figure><a href="photos_web/35-820 Loridans Dr NE-35.jpg" class="lightbox-trigger" data-caption="Photo 35"><img src="photos_web/35-820 Loridans Dr NE-35.jpg" alt="Photo 35" loading="lazy"></a></figure>
+      <figure><a href="photos_web/36-820 Loridans Dr NE-36.jpg" class="lightbox-trigger" data-caption="Photo 36"><img src="photos_web/36-820 Loridans Dr NE-36.jpg" alt="Photo 36" loading="lazy"></a></figure>
+      <figure><a href="photos_web/37-820 Loridans Dr NE-37.jpg" class="lightbox-trigger" data-caption="Photo 37"><img src="photos_web/37-820 Loridans Dr NE-37.jpg" alt="Photo 37" loading="lazy"></a></figure>
+      <figure><a href="photos_web/38-820 Loridans Dr NE-38.jpg" class="lightbox-trigger" data-caption="Photo 38"><img src="photos_web/38-820 Loridans Dr NE-38.jpg" alt="Photo 38" loading="lazy"></a></figure>
+      <figure><a href="photos_web/39-820 Loridans Dr NE-39.jpg" class="lightbox-trigger" data-caption="Photo 39"><img src="photos_web/39-820 Loridans Dr NE-39.jpg" alt="Photo 39" loading="lazy"></a></figure>
+      <figure><a href="photos_web/40-820 Loridans Dr NE-40.jpg" class="lightbox-trigger" data-caption="Photo 40"><img src="photos_web/40-820 Loridans Dr NE-40.jpg" alt="Photo 40" loading="lazy"></a></figure>
+      <figure><a href="photos_web/41-820 Loridans Dr NE-41.jpg" class="lightbox-trigger" data-caption="Photo 41"><img src="photos_web/41-820 Loridans Dr NE-41.jpg" alt="Photo 41" loading="lazy"></a></figure>
+      <figure><a href="photos_web/42-820 Loridans Dr NE-42.jpg" class="lightbox-trigger" data-caption="Photo 42"><img src="photos_web/42-820 Loridans Dr NE-42.jpg" alt="Photo 42" loading="lazy"></a></figure>
+      <figure><a href="photos_web/43-820 Loridans Dr NE-43.jpg" class="lightbox-trigger" data-caption="Photo 43"><img src="photos_web/43-820 Loridans Dr NE-43.jpg" alt="Photo 43" loading="lazy"></a></figure>
+      <figure><a href="photos_web/44-820 Loridans Dr NE-44.jpg" class="lightbox-trigger" data-caption="Photo 44"><img src="photos_web/44-820 Loridans Dr NE-44.jpg" alt="Photo 44" loading="lazy"></a></figure>
+      <figure><a href="photos_web/45-820 Loridans Dr NE-45.jpg" class="lightbox-trigger" data-caption="Photo 45"><img src="photos_web/45-820 Loridans Dr NE-45.jpg" alt="Photo 45" loading="lazy"></a></figure>
+      <figure><a href="photos_web/46-820 Loridans Dr NE-46.jpg" class="lightbox-trigger" data-caption="Photo 46"><img src="photos_web/46-820 Loridans Dr NE-46.jpg" alt="Photo 46" loading="lazy"></a></figure>
+      <figure><a href="photos_web/47-820 Loridans Dr NE-47.jpg" class="lightbox-trigger" data-caption="Photo 47"><img src="photos_web/47-820 Loridans Dr NE-47.jpg" alt="Photo 47" loading="lazy"></a></figure>
+      <figure><a href="photos_web/48-820 Loridans Dr NE-48.jpg" class="lightbox-trigger" data-caption="Photo 48"><img src="photos_web/48-820 Loridans Dr NE-48.jpg" alt="Photo 48" loading="lazy"></a></figure>
+      <figure><a href="photos_web/49-820 Loridans Dr NE-49.jpg" class="lightbox-trigger" data-caption="Photo 49"><img src="photos_web/49-820 Loridans Dr NE-49.jpg" alt="Photo 49" loading="lazy"></a></figure>
+      <figure><a href="photos_web/50-820 Loridans Dr NE-50.jpg" class="lightbox-trigger" data-caption="Photo 50"><img src="photos_web/50-820 Loridans Dr NE-50.jpg" alt="Photo 50" loading="lazy"></a></figure>
+      <figure><a href="photos_web/51-820 Loridans Dr NE-51.jpg" class="lightbox-trigger" data-caption="Photo 51"><img src="photos_web/51-820 Loridans Dr NE-51.jpg" alt="Photo 51" loading="lazy"></a></figure>
+      <figure><a href="photos_web/52-820 Loridans Dr NE-52.jpg" class="lightbox-trigger" data-caption="Photo 52"><img src="photos_web/52-820 Loridans Dr NE-52.jpg" alt="Photo 52" loading="lazy"></a></figure>
+      <figure><a href="photos_web/53-820 Loridans Dr NE-53.jpg" class="lightbox-trigger" data-caption="Photo 53"><img src="photos_web/53-820 Loridans Dr NE-53.jpg" alt="Photo 53" loading="lazy"></a></figure>
+      <figure><a href="photos_web/54-820 Loridans Dr NE-54.jpg" class="lightbox-trigger" data-caption="Photo 54"><img src="photos_web/54-820 Loridans Dr NE-54.jpg" alt="Photo 54" loading="lazy"></a></figure>
+      <figure><a href="photos_web/55-820 Loridans Dr NE-55.jpg" class="lightbox-trigger" data-caption="Photo 55"><img src="photos_web/55-820 Loridans Dr NE-55.jpg" alt="Photo 55" loading="lazy"></a></figure>
+      <figure><a href="photos_web/56-820 Loridans Dr NE-56.jpg" class="lightbox-trigger" data-caption="Photo 56"><img src="photos_web/56-820 Loridans Dr NE-56.jpg" alt="Photo 56" loading="lazy"></a></figure>
+      <figure><a href="photos_web/57-820 Loridans Dr NE-57.jpg" class="lightbox-trigger" data-caption="Photo 57"><img src="photos_web/57-820 Loridans Dr NE-57.jpg" alt="Photo 57" loading="lazy"></a></figure>
+      <figure><a href="photos_web/58-820 Loridans Dr NE-58.jpg" class="lightbox-trigger" data-caption="Photo 58"><img src="photos_web/58-820 Loridans Dr NE-58.jpg" alt="Photo 58" loading="lazy"></a></figure>
+      <figure><a href="photos_web/59-820 Loridans Dr NE-59.jpg" class="lightbox-trigger" data-caption="Photo 59"><img src="photos_web/59-820 Loridans Dr NE-59.jpg" alt="Photo 59" loading="lazy"></a></figure>
+      <figure><a href="photos_web/60-820 Loridans Dr NE-60.jpg" class="lightbox-trigger" data-caption="Photo 60"><img src="photos_web/60-820 Loridans Dr NE-60.jpg" alt="Photo 60" loading="lazy"></a></figure>
+      <figure><a href="photos_web/61-820 Loridans Dr NE-61.jpg" class="lightbox-trigger" data-caption="Photo 61"><img src="photos_web/61-820 Loridans Dr NE-61.jpg" alt="Photo 61" loading="lazy"></a></figure>
+      <figure><a href="photos_web/62-820 Loridans Dr NE-62.jpg" class="lightbox-trigger" data-caption="Photo 62"><img src="photos_web/62-820 Loridans Dr NE-62.jpg" alt="Photo 62" loading="lazy"></a></figure>
+      <figure><a href="photos_web/63-820 Loridans Dr NE-63.jpg" class="lightbox-trigger" data-caption="Photo 63"><img src="photos_web/63-820 Loridans Dr NE-63.jpg" alt="Photo 63" loading="lazy"></a></figure>
+      <figure><a href="photos_web/64-820 Loridans Dr NE-64.jpg" class="lightbox-trigger" data-caption="Photo 64"><img src="photos_web/64-820 Loridans Dr NE-64.jpg" alt="Photo 64" loading="lazy"></a></figure>
+      <figure><a href="photos_web/65-820 Loridans Dr NE-65.jpg" class="lightbox-trigger" data-caption="Photo 65"><img src="photos_web/65-820 Loridans Dr NE-65.jpg" alt="Photo 65" loading="lazy"></a></figure>
+      <figure><a href="photos_web/66-820 Loridans Dr NE-66.jpg" class="lightbox-trigger" data-caption="Photo 66"><img src="photos_web/66-820 Loridans Dr NE-66.jpg" alt="Photo 66" loading="lazy"></a></figure>
+      <figure><a href="photos_web/67-820 Loridans Dr NE-67.jpg" class="lightbox-trigger" data-caption="Photo 67"><img src="photos_web/67-820 Loridans Dr NE-67.jpg" alt="Photo 67" loading="lazy"></a></figure>
+      <figure><a href="photos_web/68-820 Loridans Dr NE-68.jpg" class="lightbox-trigger" data-caption="Photo 68"><img src="photos_web/68-820 Loridans Dr NE-68.jpg" alt="Photo 68" loading="lazy"></a></figure>
+      <figure><a href="photos_web/69-820 Loridans Dr NE-69.jpg" class="lightbox-trigger" data-caption="Photo 69"><img src="photos_web/69-820 Loridans Dr NE-69.jpg" alt="Photo 69" loading="lazy"></a></figure>
+      <figure><a href="photos_web/70-820 Loridans Dr NE-70.jpg" class="lightbox-trigger" data-caption="Photo 70"><img src="photos_web/70-820 Loridans Dr NE-70.jpg" alt="Photo 70" loading="lazy"></a></figure>
+      <figure><a href="photos_web/71-820 Loridans Dr NE-71.jpg" class="lightbox-trigger" data-caption="Photo 71"><img src="photos_web/71-820 Loridans Dr NE-71.jpg" alt="Photo 71" loading="lazy"></a></figure>
+      <figure><a href="photos_web/72-820 Loridans Dr NE-72.jpg" class="lightbox-trigger" data-caption="Photo 72"><img src="photos_web/72-820 Loridans Dr NE-72.jpg" alt="Photo 72" loading="lazy"></a></figure>
+      <figure><a href="photos_web/73-820 Loridans Dr NE-73.jpg" class="lightbox-trigger" data-caption="Photo 73"><img src="photos_web/73-820 Loridans Dr NE-73.jpg" alt="Photo 73" loading="lazy"></a></figure>
+      <figure><a href="photos_web/74-820 Loridans Dr NE-74.jpg" class="lightbox-trigger" data-caption="Photo 74"><img src="photos_web/74-820 Loridans Dr NE-74.jpg" alt="Photo 74" loading="lazy"></a></figure>
+      <figure><a href="photos_web/75-820 Loridans Dr NE-75.jpg" class="lightbox-trigger" data-caption="Photo 75"><img src="photos_web/75-820 Loridans Dr NE-75.jpg" alt="Photo 75" loading="lazy"></a></figure>
+      <figure><a href="photos_web/76-820 Loridans Dr NE-76.jpg" class="lightbox-trigger" data-caption="Photo 76"><img src="photos_web/76-820 Loridans Dr NE-76.jpg" alt="Photo 76" loading="lazy"></a></figure>
+      <figure><a href="photos_web/77-820 Loridans Dr NE-77.jpg" class="lightbox-trigger" data-caption="Photo 77"><img src="photos_web/77-820 Loridans Dr NE-77.jpg" alt="Photo 77" loading="lazy"></a></figure>
 
-      <figure>
-        <a href="photos_web/5-820 Loridans Dr NE-5.jpg" class="lightbox-trigger" data-caption="Photo 5">
-          <img src="photos_web/5-820 Loridans Dr NE-5.jpg" alt="Photo 5" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/6-820 Loridans Dr NE-6.jpg" class="lightbox-trigger" data-caption="Photo 6">
-          <img src="photos_web/6-820 Loridans Dr NE-6.jpg" alt="Photo 6" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/7-820 Loridans Dr NE-7.jpg" class="lightbox-trigger" data-caption="Photo 7">
-          <img src="photos_web/7-820 Loridans Dr NE-7.jpg" alt="Photo 7" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/8-820 Loridans Dr NE-8.jpg" class="lightbox-trigger" data-caption="Photo 8">
-          <img src="photos_web/8-820 Loridans Dr NE-8.jpg" alt="Photo 8" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/9-820 Loridans Dr NE-9.jpg" class="lightbox-trigger" data-caption="Photo 9">
-          <img src="photos_web/9-820 Loridans Dr NE-9.jpg" alt="Photo 9" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/10-820 Loridans Dr NE-10.jpg" class="lightbox-trigger" data-caption="Photo 10">
-          <img src="photos_web/10-820 Loridans Dr NE-10.jpg" alt="Photo 10" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/11-820 Loridans Dr NE-11.jpg" class="lightbox-trigger" data-caption="Photo 11">
-          <img src="photos_web/11-820 Loridans Dr NE-11.jpg" alt="Photo 11" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/12-820 Loridans Dr NE-12.jpg" class="lightbox-trigger" data-caption="Photo 12">
-          <img src="photos_web/12-820 Loridans Dr NE-12.jpg" alt="Photo 12" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/13-820 Loridans Dr NE-13.jpg" class="lightbox-trigger" data-caption="Photo 13">
-          <img src="photos_web/13-820 Loridans Dr NE-13.jpg" alt="Photo 13" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/14-820 Loridans Dr NE-14.jpg" class="lightbox-trigger" data-caption="Photo 14">
-          <img src="photos_web/14-820 Loridans Dr NE-14.jpg" alt="Photo 14" loading="lazy">
-        </a>
-      </figure>
-
-      <figure>
-        <a href="photos_web/15-820 Loridans Dr NE-15.jpg" class="lightbox-trigger" data-caption="Photo 15">
-          <img src="photos_web/15-820 Loridans Dr NE-15.jpg" alt="Photo 15" loading="lazy">
-        </a>
-      </figure>
     </div>
   </div>
 
@@ -441,11 +435,7 @@
       let currentIndex = 0;
       let lastFocused = null;
 
-      // Fullscreen API availability (desktop/Android mostly)
       const canFullscreen = !!(document.fullscreenEnabled && lightbox.requestFullscreen);
-
-      // Track whether user wants expanded view
-      // "expanded" means: Fullscreen (if supported) OR max-viewport fallback
       let expanded = false;
 
       function setFsIcon(isActive) {
@@ -483,11 +473,7 @@
       }
 
       function applyExpandedState() {
-        // If expanded is on:
-        // - Desktop/Android: requestFullscreen
-        // - iPhone/iPad: use max-viewport class
         if (!expanded) {
-          // turn off both
           exitFullscreenIfNeeded();
           lightbox.classList.remove('max-viewport');
           setFsIcon(false);
@@ -498,11 +484,9 @@
           if (!document.fullscreenElement) {
             lightbox.requestFullscreen().catch(() => {});
           }
-          // In true fullscreen, we don't need max-viewport class
           lightbox.classList.remove('max-viewport');
           setFsIcon(true);
         } else {
-          // iOS fallback
           lightbox.classList.add('max-viewport');
           setFsIcon(true);
         }
@@ -515,7 +499,6 @@
         lightbox.classList.remove('is-open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-
         img.src = '';
 
         if (lastFocused) lastFocused.focus();
@@ -523,7 +506,6 @@
 
       function showNext() {
         loadImage((currentIndex + 1) % triggers.length);
-        // keep expanded mode when changing photos
         applyExpandedState();
       }
 
@@ -537,51 +519,41 @@
         applyExpandedState();
       }
 
-      // Thumbnail click handlers
       triggers.forEach((a, i) => {
         a.addEventListener('click', (e) => {
           e.preventDefault();
-          expanded = false;             // start normal each time user opens
+          expanded = false;
           lightbox.classList.remove('max-viewport');
           setFsIcon(false);
           openLightbox(i);
         });
       });
 
-      // Close handlers
       btnClose.addEventListener('click', closeLightbox);
 
-      // Fullscreen/max-viewport handler
       if (btnFs) {
         btnFs.addEventListener('click', (e) => {
           e.stopPropagation();
           toggleFullscreenOrMaxViewport();
         });
 
-        // Keep icon/state in sync if user exits fullscreen via browser controls
         document.addEventListener('fullscreenchange', () => {
           if (!canFullscreen) return;
-          // If fullscreen ended externally, reflect that
           if (!document.fullscreenElement && expanded) {
             expanded = false;
             setFsIcon(false);
           }
-          if (document.fullscreenElement) {
-            setFsIcon(true);
-          }
+          if (document.fullscreenElement) setFsIcon(true);
         });
       }
 
-      // Click outside image closes
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
       });
 
-      // Prev/Next buttons
       btnNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
       btnPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
 
-      // Keyboard support
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('is-open')) return;
         if (e.key === 'Escape') closeLightbox();
@@ -589,7 +561,6 @@
         if (e.key === 'ArrowLeft') showPrev();
       });
 
-      // Basic swipe support (mobile)
       let touchStartX = null;
       lightbox.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
